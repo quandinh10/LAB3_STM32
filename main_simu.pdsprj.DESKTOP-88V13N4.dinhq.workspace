@@ -272,7 +272,7 @@
      <ITEM name="TopLineAddress">40002800</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="16" x="568" flags="0000000a" y="680" h="32" pid="460" iid="1">
+   <POPUP w="16" x="568" flags="0000000a" y="680" h="22" pid="460" iid="1">
     <PROPERTIES>
      <ITEM name="DataType">2</ITEM>
      <ITEM name="DispChars">Yes</ITEM>

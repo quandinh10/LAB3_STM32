@@ -13,4 +13,5 @@
 void clearSignal();
 void display7SEG(int num);
 void displaySignal(int index);
+
 #endif /* INC_DISPLAY7SEG_H_ */

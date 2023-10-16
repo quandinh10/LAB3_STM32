@@ -25,7 +25,6 @@
 #define YELLOW_MAN 14
 
 extern int led_status;
-extern int last_status;
 extern int r_val;
 extern int g_val;
 extern int y_val;
