@@ -11,7 +11,7 @@
 #include "main.h"
 #include "software_timer.h"
 #include "display7SEG.h"
-//#include "button.h"
+#include "button.h"
 
 //fsm
 #define INIT 0
@@ -23,7 +23,12 @@
 #define RED_MAN 12
 #define GREEN_MAN 13
 #define YELLOW_MAN 14
+
 extern int led_status;
+extern int last_status;
+extern int r_val;
+extern int g_val;
+extern int y_val;
 
 //7seg
 extern int led_buffer[4];

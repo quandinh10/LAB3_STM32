@@ -6,51 +6,56 @@
  */
 
 #include "button.h"
-int KeyReg0 = NORMAL_STATE; //SET state
-int KeyReg1 = NORMAL_STATE;
-int KeyReg2 = NORMAL_STATE;
-int KeyReg3 = NORMAL_STATE;
 
-int TimeOutForKeyPress =  200;
-int button1_flag = 0;
+uint16_t mode[3]={SET_MODE_Pin,INC_Pin,SET_VAL_Pin};
 
-int isButton1Pressed(){
-	if(button1_flag == 1){
-		button1_flag = 0;
+int KeyReg0[NUM_BUTTON]={NORMAL_STATE,NORMAL_STATE,NORMAL_STATE};
+int KeyReg1[NUM_BUTTON]={NORMAL_STATE,NORMAL_STATE,NORMAL_STATE};
+int KeyReg2[NUM_BUTTON]={NORMAL_STATE,NORMAL_STATE,NORMAL_STATE};
+int KeyReg3[NUM_BUTTON]={NORMAL_STATE,NORMAL_STATE,NORMAL_STATE};
+
+int TimeOutForKeyPress[NUM_BUTTON] =  {200,200,200};
+int button_flag[NUM_BUTTON] = {0,0,0};
+
+int isButtonPressed(int num){
+	if(button_flag[num] == 1){
+		button_flag[num] = 0;
 		return 1;
 	}
 	return 0;
 }
 
-void subKeyProcess(){
+void subKeyProcess(int num){
 	//TODO
-	button1_flag = 1;
+	button_flag[num]=1;
 }
 
 void getKeyInput(){
-	KeyReg2 = KeyReg1;
-	KeyReg1 = KeyReg0;
-	//Add your button here
-	KeyReg0 = HAL_GPIO_ReadPin(SET_MODE_GPIO_Port, SET_MODE_Pin);
+	for (int i=0; i<NUM_BUTTON; i++){
+		KeyReg2[i] = KeyReg1[i];
+		KeyReg1[i] = KeyReg0[i];
+		//Add your button here
+		KeyReg0[i] = HAL_GPIO_ReadPin(GPIOB, mode[i]);
 
-	if ((KeyReg1 == KeyReg0) && (KeyReg1 == KeyReg2)){ //avoid noise
-		if (KeyReg2 != KeyReg3){ //change state
-			KeyReg3 = KeyReg2;
-			if (KeyReg3 == PRESSED_STATE){
-				TimeOutForKeyPress = 200;
-				subKeyProcess();
+		if ((KeyReg1[i] == KeyReg0[i]) && (KeyReg1[i] == KeyReg2[i])){ //avoid noise
+			if (KeyReg2[i] != KeyReg3[i]){ //change state
+				KeyReg3[i] = KeyReg2[i];
+				if (KeyReg3[i] == PRESSED_STATE){
+					TimeOutForKeyPress[i] = 200;
+					subKeyProcess(i);
+				}
 			}
-		}
 
-		else{ //press without release
-			TimeOutForKeyPress--;
-			if (TimeOutForKeyPress == 0){
-				KeyReg3 = NORMAL_STATE;
-			}
+			else{ //press without release
+				TimeOutForKeyPress[i]--;
+				if (TimeOutForKeyPress[i] == 0){
+					KeyReg3[i] = NORMAL_STATE;
+				}
 
 			}
 		}
 	}
+}
 
 
 

@@ -19,6 +19,7 @@ void fsm_traffic_light(){
 		HAL_GPIO_WritePin(YELLOW2_GPIO_Port, YELLOW2_Pin, SET);
 
 		led_status = RED_GREEN;
+		last_status = led_status;
 		setTimer1(300);
 		setTimer2(100);
 		break;
@@ -40,6 +41,12 @@ void fsm_traffic_light(){
 		if (timer1_flag == 1){
 			setTimer1(200);
 			led_status = RED_YELLOW;
+			last_status = led_status;
+		}
+
+		if (isButtonPressed(0) == 1){
+			led_status = RED_MAN;
+			setTimer5(1);
 		}
 		break;
 	case RED_YELLOW:
@@ -61,6 +68,12 @@ void fsm_traffic_light(){
 		if(timer1_flag == 1){
 			setTimer1(300);
 			led_status = GREEN_RED;
+			last_status = led_status;
+		}
+
+		if (isButtonPressed(0) == 1){
+			led_status = RED_MAN;
+			setTimer5(1);
 		}
 		break;
 	case GREEN_RED:
@@ -81,6 +94,12 @@ void fsm_traffic_light(){
 		if(timer1_flag == 1){
 			setTimer1(200);
 			led_status = YELLOW_RED;
+			last_status = led_status;
+		}
+
+		if (isButtonPressed(0) == 1){
+			led_status = RED_MAN;
+			setTimer5(1);
 		}
 		break;
 	case YELLOW_RED:
@@ -104,6 +123,10 @@ void fsm_traffic_light(){
 			led_status = RED_GREEN;
 		}
 
+		if (isButtonPressed(0) == 1){
+			led_status = RED_MAN;
+			setTimer5(1);
+		}
 		break;
 	default:
 		break;

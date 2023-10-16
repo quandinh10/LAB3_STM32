@@ -8,14 +8,16 @@
 #ifndef INC_BUTTON_H_
 #define INC_BUTTON_H_
 
-#include "main.h"
+#include "global.h"
 
 #define NORMAL_STATE SET
 #define PRESSED_STATE RESET
 
-extern int button1_flag;
+#define NUM_BUTTON 3
+
+extern int button_flag[NUM_BUTTON];
 
 void getKeyInput();
-int isButton1Pressed();
+int isButtonPressed(int num);
 
 #endif /* INC_BUTTON_H_ */

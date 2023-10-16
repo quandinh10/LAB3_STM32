@@ -8,10 +8,18 @@
 #include "global.h"
 
 int led_status=0;
+int last_status=0;
+
 int led_buffer[4]={0,0,0,0};
 int index_led = 0;
+
+int r_val=5;
+int y_val=2;
+int g_val=3;
+
 int timerRoad1 = 5;
 int timerRoad2 = 3;
+
 void updateLedBuffer(){
 	led_buffer[0] = timerRoad1 / 10;
 	led_buffer[1] = timerRoad1 % 10;
