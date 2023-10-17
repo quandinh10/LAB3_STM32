@@ -93,6 +93,11 @@ int main(void)
   HAL_TIM_Base_Start_IT(&htim2);
   setTimer3(1);
   setTimer4(1);
+  timerRoad1 = r_val;
+  timerRoad2 = g_val;
+  r_inc=r_val;
+  g_inc=g_val;
+  y_inc=y_val;
   /* USER CODE END 2 */
 
   /* Infinite loop */

@@ -17,12 +17,19 @@ void fsm_manual_run(){
 			HAL_GPIO_TogglePin(RED1_GPIO_Port, RED1_Pin);
 		}
 		if (isButtonPressed(1) == 1){
-			r_val++;
-			if (r_val >= 100) r_val=2;
+			r_inc++;
+			timerRoad1++;
+			if (r_inc >= 100) r_inc=2;
 		}
 		if (isButtonPressed(0) == 1){
 			setTimer5(1);
 			led_status = YELLOW_MAN;
+
+			timerRoad1 = y_val;
+			timerRoad2 = 3;
+		}
+		if (isButtonPressed(2) == 1){
+			r_val=r_inc;
 		}
 		break;
 
@@ -34,12 +41,19 @@ void fsm_manual_run(){
 			HAL_GPIO_TogglePin(YELLOW1_GPIO_Port, YELLOW1_Pin);
 		}
 		if (isButtonPressed(1) == 1){
-			y_val++;
-			if (y_val >= 100) y_val=1;
+			y_inc++;
+			timerRoad1++;
+			if (y_inc >= r_val) y_inc=1;
 		}
 		if (isButtonPressed(0) == 1){
 			setTimer5(1);
 			led_status = GREEN_MAN;
+
+			timerRoad1 = g_val;
+			timerRoad2 = 4;
+		}
+		if (isButtonPressed(2) == 1){
+			y_val=y_inc;
 		}
 		break;
 
@@ -51,18 +65,29 @@ void fsm_manual_run(){
 			HAL_GPIO_TogglePin(GREEN1_GPIO_Port, GREEN1_Pin);
 		}
 		if (isButtonPressed(1) == 1){
-			g_val++;
-			if (g_val >= 100) g_val=1;
+			g_inc++;
+			timerRoad1++;
+			if (g_inc >= r_val) g_inc=1;
 		}
 		if (isButtonPressed(0) == 1){
 			led_status = RED_GREEN;
-			setTimer1(300);
+			g_val = r_val-y_val;
+			timerRoad1 = r_val;
+			timerRoad2 = g_val;
+			updateLedBuffer();
+			setTimer1(g_val*100);
 			setTimer2(100);
+
+			//to display new value of 7SEG
 			setTimer4(1);
 			index_led=0;
+			//
 			clearSignal();
-			timerRoad1 = 5;
-			timerRoad2 = 3;
+
+		}
+		if (isButtonPressed(2) == 1){
+			g_val=g_inc;
+			y_val=r_val-g_val;
 		}
 		break;
 

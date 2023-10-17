@@ -29,11 +29,16 @@ extern int r_val;
 extern int g_val;
 extern int y_val;
 
+extern int r_inc;
+extern int g_inc;
+extern int y_inc;
+
 //7seg
 extern int led_buffer[4];
 extern int index_led;
 extern int timerRoad1;
 extern int timerRoad2;
+
 void updateLedBuffer();
 
 #endif /* INC_GLOBAL_H_ */
