@@ -23,6 +23,8 @@ int r_inc=0;
 int g_inc=0;
 int y_inc=0;
 
+int toogleFlag=0;
+
 void updateLedBuffer(){
 	led_buffer[0] = timerRoad1 / 10;
 	led_buffer[1] = timerRoad1 % 10;

@@ -12,6 +12,7 @@
 #include "software_timer.h"
 #include "display7SEG.h"
 #include "button.h"
+#include "physical.h"
 
 //fsm
 #define INIT 0
@@ -33,6 +34,7 @@ extern int r_inc;
 extern int g_inc;
 extern int y_inc;
 
+extern int toogleFlag;
 //7seg
 extern int led_buffer[4];
 extern int index_led;

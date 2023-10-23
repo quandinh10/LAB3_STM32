@@ -10,11 +10,16 @@
 void fsm_manual_run(){
 	switch(led_status){
 	case RED_MAN:
-		HAL_GPIO_WritePin(GREEN1_GPIO_Port, GREEN1_Pin, SET);
-		HAL_GPIO_WritePin(YELLOW1_GPIO_Port, YELLOW1_Pin, SET);
 		if (timer5_flag == 1){
 			setTimer5(25);
-			HAL_GPIO_TogglePin(RED1_GPIO_Port, RED1_Pin);
+			if (toogleFlag == 0){
+				toogleFlag = 1;
+				onRED1();
+				onRED2();
+			}
+			else {
+				offALL();
+			}
 		}
 		if (isButtonPressed(1) == 1){
 			r_inc++;
@@ -34,11 +39,16 @@ void fsm_manual_run(){
 		break;
 
 	case YELLOW_MAN:
-		HAL_GPIO_WritePin(GREEN1_GPIO_Port, GREEN1_Pin, SET);
-		HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, SET);
 		if (timer5_flag == 1){
 			setTimer5(25);
-			HAL_GPIO_TogglePin(YELLOW1_GPIO_Port, YELLOW1_Pin);
+			if (toogleFlag == 0){
+				toogleFlag = 1;
+				onYELLOW1();
+				onYELLOW2();
+			}
+			else {
+				offALL();
+			}
 		}
 		if (isButtonPressed(1) == 1){
 			y_inc++;
@@ -58,11 +68,16 @@ void fsm_manual_run(){
 		break;
 
 	case GREEN_MAN:
-		HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, SET);
-		HAL_GPIO_WritePin(YELLOW1_GPIO_Port, YELLOW1_Pin, SET);
 		if (timer5_flag == 1){
 			setTimer5(25);
-			HAL_GPIO_TogglePin(GREEN1_GPIO_Port, GREEN1_Pin);
+			if (toogleFlag == 0){
+				toogleFlag = 1;
+				onGREEN1();
+				onGREEN2();
+			}
+			else {
+				offALL();
+			}
 		}
 		if (isButtonPressed(1) == 1){
 			g_inc++;

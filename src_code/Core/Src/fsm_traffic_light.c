@@ -12,12 +12,7 @@ void fsm_traffic_light(){
 	switch(led_status){
 	case INIT:
 		//TODO
-		HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, SET);
-		HAL_GPIO_WritePin(GREEN1_GPIO_Port, GREEN1_Pin, SET);
-		HAL_GPIO_WritePin(YELLOW1_GPIO_Port, YELLOW1_Pin, SET);
-		HAL_GPIO_WritePin(RED2_GPIO_Port, RED2_Pin, SET);
-		HAL_GPIO_WritePin(GREEN2_GPIO_Port, GREEN2_Pin, SET);
-		HAL_GPIO_WritePin(YELLOW2_GPIO_Port, YELLOW2_Pin, SET);
+		offALL();
 
 		//INIT state
 		led_status = RED_GREEN;
@@ -26,12 +21,8 @@ void fsm_traffic_light(){
 		break;
 	case RED_GREEN:
 		//TODO
-		HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, RESET);
-		HAL_GPIO_WritePin(GREEN1_GPIO_Port, GREEN1_Pin, SET);
-		HAL_GPIO_WritePin(YELLOW1_GPIO_Port, YELLOW1_Pin, SET);
-		HAL_GPIO_WritePin(RED2_GPIO_Port, RED2_Pin, SET);
-		HAL_GPIO_WritePin(GREEN2_GPIO_Port, GREEN2_Pin, RESET);
-		HAL_GPIO_WritePin(YELLOW2_GPIO_Port, YELLOW2_Pin, SET);
+		onRED1();
+		onGREEN2();
 
 		//decrement of counter of each road
 		if (timer2_flag == 1){
@@ -49,12 +40,8 @@ void fsm_traffic_light(){
 		break;
 	case RED_YELLOW:
 		//TODO
-		HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, RESET);
-		HAL_GPIO_WritePin(GREEN1_GPIO_Port, GREEN1_Pin, SET);
-		HAL_GPIO_WritePin(YELLOW1_GPIO_Port, YELLOW1_Pin, SET);
-		HAL_GPIO_WritePin(RED2_GPIO_Port, RED2_Pin, SET);
-		HAL_GPIO_WritePin(GREEN2_GPIO_Port, GREEN2_Pin, SET);
-		HAL_GPIO_WritePin(YELLOW2_GPIO_Port, YELLOW2_Pin, RESET);
+		onRED1();
+		onYELLOW2();
 
 		//decrement of counter of each road
 		if (timer2_flag == 1){
@@ -72,12 +59,8 @@ void fsm_traffic_light(){
 		}
 		break;
 	case GREEN_RED:
-		HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, SET);
-		HAL_GPIO_WritePin(GREEN1_GPIO_Port, GREEN1_Pin, RESET);
-		HAL_GPIO_WritePin(YELLOW1_GPIO_Port, YELLOW1_Pin, SET);
-		HAL_GPIO_WritePin(RED2_GPIO_Port, RED2_Pin, RESET);
-		HAL_GPIO_WritePin(GREEN2_GPIO_Port, GREEN2_Pin, SET);
-		HAL_GPIO_WritePin(YELLOW2_GPIO_Port, YELLOW2_Pin, SET);
+		onGREEN1();
+		onRED2();
 
 		//decrement of counter of each road
 		if (timer2_flag == 1){
@@ -94,12 +77,8 @@ void fsm_traffic_light(){
 		}
 		break;
 	case YELLOW_RED:
-		HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, SET);
-		HAL_GPIO_WritePin(GREEN1_GPIO_Port, GREEN1_Pin, SET);
-		HAL_GPIO_WritePin(YELLOW1_GPIO_Port, YELLOW1_Pin, RESET);
-		HAL_GPIO_WritePin(RED2_GPIO_Port, RED2_Pin, RESET);
-		HAL_GPIO_WritePin(GREEN2_GPIO_Port, GREEN2_Pin, SET);
-		HAL_GPIO_WritePin(YELLOW2_GPIO_Port, YELLOW2_Pin, SET);
+		onYELLOW1();
+		onRED2();
 
 		//decrement of counter of each road
 		if (timer2_flag == 1){
@@ -121,6 +100,7 @@ void fsm_traffic_light(){
 	}
 	//check mode (timer5 for toogle LED)
 	if (isButtonPressed(0) == 1 && (led_status == RED_GREEN || led_status == RED_YELLOW || led_status == GREEN_RED || led_status == YELLOW_RED)){
+		offALL();
 		led_status = RED_MAN;
 		r_inc = r_val;
 		y_inc = y_val;
