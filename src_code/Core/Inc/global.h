@@ -12,6 +12,7 @@
 #include "software_timer.h"
 #include "display7SEG.h"
 #include "button.h"
+#include "scheduler.h"
 #include "physical.h"
 
 //fsm

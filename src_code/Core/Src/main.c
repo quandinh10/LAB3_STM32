@@ -98,6 +98,9 @@ int main(void)
   r_inc=r_val;
   g_inc=g_val;
   y_inc=y_val;
+  SCH_Init();\
+  SCH_Add_Task(fsm_manual_run, 0, 10);
+  SCH_Add_Task(fsm_traffic_light, 0, 10);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -113,8 +116,9 @@ int main(void)
 		  displaySignal(index_led++);
 		  if (index_led >= 4) index_led=0;
 	  }
-	  fsm_traffic_light();
-	  fsm_manual_run();
+	  SCH_Dispatch_Tasks();
+//	  fsm_traffic_light();
+//	  fsm_manual_run();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -259,6 +263,7 @@ static void MX_GPIO_Init(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	timerRun();
 	getKeyInput();
+	SCH_Update();
 }
 /* USER CODE END 4 */
 

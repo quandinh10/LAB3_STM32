@@ -1,0 +1,7 @@
+physical.c:10:6:onRED1	8	static
+physical.c:15:6:onYELLOW1	8	static
+physical.c:20:6:onGREEN1	8	static
+physical.c:26:6:onRED2	8	static
+physical.c:31:6:onYELLOW2	8	static
+physical.c:36:6:onGREEN2	8	static
+physical.c:42:6:offALL	8	static

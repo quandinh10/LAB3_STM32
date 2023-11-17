@@ -13,13 +13,13 @@ void fsm_manual_run(){
 		if (timer5_flag == 1){
 			setTimer5(25);
 			if (toogleFlag == 0){
-				toogleFlag = 1;
 				onRED1();
 				onRED2();
 			}
 			else {
 				offALL();
 			}
+			toogleFlag = 1 - toogleFlag;
 		}
 		if (isButtonPressed(1) == 1){
 			r_inc++;
@@ -42,13 +42,13 @@ void fsm_manual_run(){
 		if (timer5_flag == 1){
 			setTimer5(25);
 			if (toogleFlag == 0){
-				toogleFlag = 1;
 				onYELLOW1();
 				onYELLOW2();
 			}
 			else {
 				offALL();
 			}
+			toogleFlag = 1 - toogleFlag;
 		}
 		if (isButtonPressed(1) == 1){
 			y_inc++;
@@ -71,13 +71,13 @@ void fsm_manual_run(){
 		if (timer5_flag == 1){
 			setTimer5(25);
 			if (toogleFlag == 0){
-				toogleFlag = 1;
 				onGREEN1();
 				onGREEN2();
 			}
 			else {
 				offALL();
 			}
+			toogleFlag = 1 - toogleFlag;
 		}
 		if (isButtonPressed(1) == 1){
 			g_inc++;
@@ -108,8 +108,5 @@ void fsm_manual_run(){
 
 	default:
 		break;
-	}
-	if (isButtonPressed(2) == 1){
-		timerRoad1 = r_val;
 	}
 }
