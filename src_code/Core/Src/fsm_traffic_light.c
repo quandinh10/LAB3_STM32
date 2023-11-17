@@ -102,12 +102,12 @@ void fsm_traffic_light(){
 	if (isButtonPressed(0) == 1 && (led_status == RED_GREEN || led_status == RED_YELLOW || led_status == GREEN_RED || led_status == YELLOW_RED)){
 		offALL();
 		led_status = RED_MAN;
-		r_inc = r_val;
-		y_inc = y_val;
-		g_inc = g_val;
 		setTimer5(1);
 
 		timerRoad1 = r_val;
 		timerRoad2 = 2;
+
+		//reset button flag
+		resetButton();
 	}
 }

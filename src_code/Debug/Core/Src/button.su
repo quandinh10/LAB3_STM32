@@ -1,3 +1,4 @@
 button.c:20:5:isButtonPressed	16	static
 button.c:28:6:subKeyProcess	16	static
 button.c:33:6:getKeyInput	16	static
+button.c:60:6:resetButton	16	static

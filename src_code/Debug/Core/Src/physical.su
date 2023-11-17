@@ -5,3 +5,4 @@ physical.c:26:6:onRED2	8	static
 physical.c:31:6:onYELLOW2	8	static
 physical.c:36:6:onGREEN2	8	static
 physical.c:42:6:offALL	8	static
+physical.c:51:6:toogleRED1	8	static

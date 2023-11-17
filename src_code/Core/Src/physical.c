@@ -46,4 +46,8 @@ void offALL(){
 	HAL_GPIO_WritePin(RED2_GPIO_Port, RED2_Pin, SET);
 	HAL_GPIO_WritePin(GREEN2_GPIO_Port, GREEN2_Pin, SET);
 	HAL_GPIO_WritePin(YELLOW2_GPIO_Port, YELLOW2_Pin, SET);
-}
+};
+
+void toogleRED1(){
+	HAL_GPIO_TogglePin(RED1_GPIO_Port, RED1_Pin);
+};

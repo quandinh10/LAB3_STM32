@@ -19,4 +19,5 @@ void onYELLOW2();
 void onGREEN2();
 
 void offALL();
+void toogleRED1();
 #endif /* INC_PHYSICAL_H_ */

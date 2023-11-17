@@ -57,5 +57,9 @@ void getKeyInput(){
 	}
 }
 
-
+void resetButton(){
+	for (int i = 0; i < NUM_BUTTON; i++){
+		isButtonPressed(i);
+	}
+}
 

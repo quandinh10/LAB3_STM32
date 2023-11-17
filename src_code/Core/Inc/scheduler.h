@@ -1,44 +1,30 @@
 /*
- * scheduler.h
+ * app_scheduler.h
  *
- *  Created on: Nov 1, 2023
- *      Author: dinhq
+ *  Created on: Nov 27, 2019
+ *      Author: VAIO
  */
 
-#ifndef INC_SCHEDULER_H_
-#define INC_SCHEDULER_H_
+#ifndef APP_SCHEDULER_H_
+#define APP_SCHEDULER_H_
 
-#include <stdint.h>
-#include <stdio.h>
-#include <time.h>
+#include "stdint.h"
 
-typedef struct
-{
-    void (*pTask)(void);
-    uint32_t    Delay;
-    uint32_t    Period;
-    uint8_t     RunMe;
 
-    uint32_t    TaskID;
-}sTasks;
+#define SCH_MAX_TASKS 			10
+#define	NO_TASK_ID				0
 
-#define SCH_MAX_TASKS   40
-#define TICK 			10
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-void SCH_Init(void);
+    void SCH_Init(void);
+    void SCH_Update(void);
+    uint32_t SCH_Add_Task(void (*p_function)(), uint32_t DELAY, uint32_t PERIOD);
+    void SCH_Dispatch_Tasks(void);
+    uint8_t SCH_Delete_Task(uint32_t TASK_ID);
 
-//init_task
-uint32_t SCH_Add_Task(void (*pFunction)(), uint32_t Delay, uint32_t Period);
-
-//timerRun
-void SCH_Update(void);
-
-//timerFlag
-void SCH_Dispatch_Tasks(void);
-
-uint8_t SCH_Delete(uint32_t ID);
-
-uint32_t get_time(void);
-void timerCallback();
-
-#endif /* INC_SCHEDULER_H_ */
+#ifdef __cplusplus
+}
+#endif
+#endif /* APP_SCHEDULER_H_ */

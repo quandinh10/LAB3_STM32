@@ -31,10 +31,6 @@ extern int r_val;
 extern int g_val;
 extern int y_val;
 
-extern int r_inc;
-extern int g_inc;
-extern int y_inc;
-
 extern int toogleFlag;
 //7seg
 extern int led_buffer[4];
